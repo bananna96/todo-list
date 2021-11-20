@@ -11,7 +11,9 @@
 				elevation="1"
 				height="600px"
 				width="500px"
-			></v-sheet>
+			>
+				<TheListHeader />
+			</v-sheet>
 		</div>
 	</div>
 </template>
@@ -19,11 +21,12 @@
 <script>
 import TheHeader from '../components/TheHeader.vue';
 import TheFooter from '../components/TheFooter.vue';
-
+import TheListHeader from '../components/TheListHeader.vue';
 export default {
 	components: {
 		TheHeader,
 		TheFooter,
+		TheListHeader,
 	},
 };
 </script>
