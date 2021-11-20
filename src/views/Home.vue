@@ -6,14 +6,7 @@
 		</section>
 
 		<div class="sheet-wrapper">
-			<v-sheet
-				color="white"
-				elevation="1"
-				height="600px"
-				width="500px"
-			>
-				<TheListHeader />
-			</v-sheet>
+			<TheListHeader />
 		</div>
 	</div>
 </template>
