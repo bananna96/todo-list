@@ -4,6 +4,10 @@ function getTodos() {
 	return db.todos;
 }
 
+function setTodos(todos) {
+	db.todos = todos;
+}
+
 function addTodo(todo) {
 	db.todos.push({
 		id: db.todos.length,
@@ -14,14 +18,13 @@ function addTodo(todo) {
 }
 
 function deleteTodo(id) {
-	console.log(db.todos);
 	let index = db.todos.indexOf(id == id);
 	db.todos.splice(index, 1);
-	console.log(db.todos);
 }
 
 export default {
 	getTodos,
+	setTodos,
 	addTodo,
 	deleteTodo,
 };

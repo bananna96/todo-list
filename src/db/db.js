@@ -3,7 +3,7 @@ let todos = [
 	{ id: 1, title: 'Title2', description: 'Description2', done: true },
 	{ id: 2, title: 'Title3', description: 'Description3', done: false },
 	{ id: 3, title: 'Title4', description: 'Description4', done: true },
-	{ id: 4, title: 'Title5', description: 'Description5', done: false },
+	{ id: 4, title: 'Anna', description: 'Description5', done: false },
 ];
 
 export default {
