@@ -20,6 +20,7 @@
 				<v-text-field
 					label="Title"
 					hide-details="auto"
+					v-model="title"
 				></v-text-field>
 				<v-textarea
 					clearable
@@ -27,10 +28,11 @@
 					rows="5"
 					row-height="20"
 					no-resize
+					v-model="description"
 				></v-textarea>
 				<v-card-actions>
 					<v-spacer></v-spacer>
-					<v-btn color="primary" text @click="dialog = false">
+					<v-btn color="primary" text @click="addItem()">
 						Add
 					</v-btn>
 				</v-card-actions>
@@ -40,11 +42,23 @@
 </template>
 
 <script>
+import todosEndpoint from '../endpoints/todosEndpoint';
 export default {
 	data() {
 		return {
 			dialog: false,
+			title: '',
+			description: '',
 		};
+	},
+	methods: {
+		addItem() {
+			this.dialog = false;
+			todosEndpoint.addTodo({
+				title: this.title,
+				description: this.description,
+			});
+		},
 	},
 };
 </script>
