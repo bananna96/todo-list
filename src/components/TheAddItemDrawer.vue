@@ -19,7 +19,18 @@
 				<v-card-title class="text-h5 drawer-header">
 					Add Todo
 				</v-card-title>
-				<div>
+				<div class="content-wrapper">
+					<v-alert
+						:value="alert"
+						color="pink"
+						dense
+						transition="scale-transition"
+						outlined
+						text
+						width="50%"
+					>
+						Title is required!
+					</v-alert>
 					<v-text-field
 						class="text-input"
 						label="Title"
@@ -41,6 +52,9 @@
 				</div>
 				<v-card-actions>
 					<v-spacer></v-spacer>
+					<v-btn color="#ea7186" text @click="toggleDialog()">
+						Close
+					</v-btn>
 					<v-btn color="primary" text @click="addItem()">
 						Add
 					</v-btn>
@@ -57,15 +71,26 @@ export default {
 			dialog: false,
 			title: '',
 			description: '',
+			alert: false,
 		};
 	},
 	methods: {
 		addItem() {
-			this.dialog = false;
-			this.$store.dispatch('addTodo', {
-				title: this.title,
-				description: this.description,
-			});
+			if (this.title.length > 0) {
+				this.$store.dispatch('addTodo', {
+					title: this.title,
+					description: this.description,
+				});
+				this.toggleDialog();
+			} else {
+				this.alert = !this.alert;
+			}
+		},
+		toggleDialog() {
+			this.dialog = !this.dialog;
+			this.title = '';
+			this.description = '';
+			this.alert = false;
 		},
 	},
 };
@@ -79,5 +104,24 @@ export default {
 
 .text-input {
 	margin: 10px 20px 0px 20px !important;
+	width: 95%;
+}
+
+.v-text-field--outlined >>> fieldset {
+	border-color: rgba(111, 179, 184, 1);
+}
+
+.v-alert {
+	margin: 5px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.content-wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 </style>

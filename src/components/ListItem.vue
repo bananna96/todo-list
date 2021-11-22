@@ -1,4 +1,4 @@
-<template>
+<template v-slot:label>
 	<div>
 		<v-list-item v-show="!this.editable" :key="listItem.id">
 			<v-list-item-content @click="toggleEditable">
@@ -15,7 +15,7 @@
 						mdi-delete
 					</v-icon>
 					<v-btn
-						color="#c2edce"
+						color="#88db9f"
 						v-show="!done"
 						dark
 						small
@@ -29,7 +29,7 @@
 			</v-list-item-action>
 		</v-list-item>
 		<v-list-item v-show="this.editable">
-			<v-list-item-content>
+			<v-list-item-content class="edit-warpper">
 				<v-text-field
 					class="text-input"
 					label="Title"
@@ -54,6 +54,7 @@
 				</v-btn>
 			</v-list-item-action>
 		</v-list-item>
+		<v-divider></v-divider>
 	</div>
 </template>
 
@@ -75,7 +76,11 @@ export default {
 			this.$store.dispatch('deleteTodo', this.listItem.id);
 		},
 		toggleEditable() {
-			this.editable = !this.editable;
+			if (this.done) {
+				this.editable = false;
+			} else {
+				this.editable = !this.editable;
+			}
 		},
 		toggleDone() {
 			this.done = !this.done;
@@ -105,5 +110,18 @@ export default {
 }
 .v-list-item__action {
 	margin: 0 !important;
+}
+.edit-warpper {
+	padding: 0;
+}
+
+.edit-warpper > div {
+	margin: 10px 0px;
+}
+.text-input {
+	border-color: yellow !important;
+}
+.v-text-field--outlined >>> fieldset {
+	border-color: rgba(111, 179, 184, 1);
 }
 </style>

@@ -10,8 +10,7 @@
 			clearable
 			outlined
 			hide-details
-			>> ></v-text-field
-		>
+		></v-text-field>
 	</div>
 </template>
 
@@ -19,16 +18,13 @@
 export default {
 	data: function () {
 		return {
-			listItemsAll: this.getTodos(),
+			listItemsAll: this.$store.state.todos,
 			filteredTodos: [],
 			searchValue: '',
 		};
 	},
 	computed: {},
 	methods: {
-		getTodos() {
-			return this.$store.state.todos;
-		},
 		setTodos() {
 			this.$store.dispatch('setTodos', this.filteredTodos);
 		},
@@ -49,4 +45,12 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+/* .v-text-field--outlined >>> fieldset {
+	border-color: rgba(111, 179, 184, 1);
+}
+.v-text-field--outlined >>> i,
+.v-text-field--outlined >>> label {
+	color: rgba(111, 179, 184, 1);
+} */
+</style>
