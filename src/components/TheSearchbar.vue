@@ -7,6 +7,9 @@
 			single-line
 			v-model="searchValue"
 			@input="filterItems(searchValue)"
+			clearable
+			outlined
+			hide-details
 		></v-text-field>
 	</div>
 </template>
@@ -24,14 +27,21 @@ export default {
 	},
 	methods: {
 		filterItems(value) {
-			this.filteredTodos = this.listItemsAll.filter(item => {
-				return item.title
-					.toUpperCase()
-					.includes(value.toUpperCase());
-			});
-			console.log(this.filteredTodos.length);
-			todosEndpoint.setTodos(this.filteredTodos);
+			if (value) {
+				this.filteredTodos = this.listItemsAll.filter(item => {
+					return item.title
+						.toUpperCase()
+						.includes(value.toUpperCase());
+				});
+				console.log(this.filteredTodos.length);
+
+				todosEndpoint.setTodos(this.filteredTodos);
+			} else {
+				todosEndpoint.setTodos(this.listItemsAll);
+			}
 		},
 	},
 };
 </script>
+
+<style scoped></style>

@@ -1,6 +1,7 @@
 <template>
-	<div class="container">
-		<v-sheet color="white" elevation="1" width="500px">
+	<div class="list-wrapper">
+		<v-sheet width="500px" class="sheet" rounded>
+			<v-subheader>Open</v-subheader>
 			<v-list>
 				<v-list-item-group>
 					<ListItem
@@ -11,7 +12,8 @@
 				</v-list-item-group>
 			</v-list>
 		</v-sheet>
-		<v-sheet color="white" elevation="1" width="500px">
+		<v-sheet width="500px" class="sheet" rounded>
+			<v-subheader>Done</v-subheader>
 			<v-list>
 				<v-list-item-group>
 					<ListItem
@@ -50,9 +52,13 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.list-wrapper {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	justify-items: space-between;
+}
+
+.sheet {
+	margin-bottom: 20px;
 }
 </style>

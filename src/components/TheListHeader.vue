@@ -1,6 +1,6 @@
 <template>
-	<v-sheet color="white" elevation="1" height="80px" width="500px">
-		<div class="container">
+	<v-sheet rounded width="500px">
+		<div class="listheader-wrapper">
 			<TheSearchbar class="searchbar" />
 			<TheAddItemDrawer class="drawer" />
 		</div>
@@ -20,9 +20,11 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.listheader-wrapper {
 	display: flex;
-	justify-content: space-between;
+	align-items: center;
+	justify-content: space-evenly;
+	padding: 10px 0px;
 }
 .searchbar {
 	width: 80%;

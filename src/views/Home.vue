@@ -2,7 +2,6 @@
 	<div>
 		<section id="home">
 			<TheHeader />
-			<TheFooter />
 		</section>
 
 		<div class="sheet-wrapper">
@@ -14,14 +13,12 @@
 
 <script>
 import TheHeader from '../components/TheHeader.vue';
-import TheFooter from '../components/TheFooter.vue';
 import TheListHeader from '../components/TheListHeader.vue';
 import TheList from '../components/TheList.vue';
 
 export default {
 	components: {
 		TheHeader,
-		TheFooter,
 		TheListHeader,
 		TheList,
 	},
