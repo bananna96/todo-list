@@ -10,22 +10,30 @@
 			clearable
 			outlined
 			hide-details
-		></v-text-field>
+			>> ></v-text-field
+		>
 	</div>
 </template>
 
 <script>
-import todosEndpoint from '../endpoints/todosEndpoint';
+// import todosEndpoint from '../endpoints/todosEndpoint';
 
 export default {
 	data: function () {
 		return {
-			listItemsAll: todosEndpoint.getTodos(),
+			listItemsAll: this.getTodos(),
 			filteredTodos: [],
 			searchValue: '',
 		};
 	},
+	computed: {},
 	methods: {
+		getTodos() {
+			return this.$store.state.todos;
+		},
+		setTodos() {
+			this.$store.dispatch('setTodos', this.filteredTodos);
+		},
 		filterItems(value) {
 			if (value) {
 				this.filteredTodos = this.listItemsAll.filter(item => {
@@ -33,11 +41,10 @@ export default {
 						.toUpperCase()
 						.includes(value.toUpperCase());
 				});
-				console.log(this.filteredTodos.length);
-
-				todosEndpoint.setTodos(this.filteredTodos);
+				this.setTodos();
 			} else {
-				todosEndpoint.setTodos(this.listItemsAll);
+				this.filteredTodos = this.listItemsAll;
+				this.setTodos();
 			}
 		},
 	},

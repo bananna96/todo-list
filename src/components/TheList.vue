@@ -5,7 +5,7 @@
 			<v-list>
 				<v-list-item-group>
 					<ListItem
-						v-for="item in getOpenItems(listItemsAll)"
+						v-for="item in getOpenItems(this.getTodos)"
 						:key="item.id"
 						:listItem="item"
 					/>
@@ -17,7 +17,7 @@
 			<v-list>
 				<v-list-item-group>
 					<ListItem
-						v-for="item in getDoneItems(listItemsAll)"
+						v-for="item in getDoneItems(this.getTodos)"
 						:key="item.id"
 						:listItem="item"
 					/>
@@ -29,16 +29,21 @@
 
 <script>
 import ListItem from '../components/ListItem.vue';
-import todosEndpoint from '../endpoints/todosEndpoint';
+//import todosEndpoint from '../endpoints/todosEndpoint';
 
 export default {
 	components: {
 		ListItem,
 	},
-	data: function () {
-		return {
-			listItemsAll: todosEndpoint.getTodos(),
-		};
+	// data: function () {
+	// 	return {
+	// 		listItemsAll: todosEndpoint.getTodos(),
+	// 	};
+	// },
+	computed: {
+		getTodos() {
+			return this.$store.state.todos;
+		},
 	},
 	methods: {
 		getDoneItems(items) {

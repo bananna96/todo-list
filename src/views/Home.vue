@@ -15,12 +15,18 @@
 import TheHeader from '../components/TheHeader.vue';
 import TheListHeader from '../components/TheListHeader.vue';
 import TheList from '../components/TheList.vue';
+import todosEndpoint from '../endpoints/todosEndpoint';
 
 export default {
 	components: {
 		TheHeader,
 		TheListHeader,
 		TheList,
+	},
+	data: function () {
+		return {
+			listItemsAll: todosEndpoint.getTodos(),
+		};
 	},
 };
 </script>
