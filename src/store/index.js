@@ -19,12 +19,13 @@ export default new Vuex.Store({
 					getIndex();
 				}
 			}
-			state.todos.push({
+			let newTodo = {
 				id: id,
 				title: payload.title,
 				description: payload.description,
 				done: false,
-			});
+			};
+			state.todos.push(newTodo);
 		},
 		SET_TODOS(state, payload) {
 			state.todos = payload;
@@ -33,6 +34,11 @@ export default new Vuex.Store({
 			let index = state.todos.findIndex(t => t.id == payload.id);
 			state.todos[index].title = payload.title;
 			state.todos[index].description = payload.description;
+			state.todos[index].done = payload.done;
+		},
+		DELETE_TODO(state, id) {
+			let index = state.todos.findIndex(i => i.id == id);
+			state.todos.splice(index, 1);
 		},
 	},
 	actions: {
@@ -44,6 +50,9 @@ export default new Vuex.Store({
 		},
 		updateTodo({ commit }, todo) {
 			commit('UPDATE_TODO', todo);
+		},
+		deleteTodo({ commit }, id) {
+			commit('DELETE_TODO', id);
 		},
 	},
 	modules: {},

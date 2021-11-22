@@ -1,11 +1,7 @@
-<template v-slot:activator>
+<template>
 	<div>
-		<v-list-item
-			v-show="!this.editable"
-			:key="listItem.id"
-			@click="toggleEditable"
-		>
-			<v-list-item-content>
+		<v-list-item v-show="!this.editable" :key="listItem.id">
+			<v-list-item-content @click="toggleEditable">
 				<v-list-item-title>
 					{{ listItem.title }}
 				</v-list-item-title>
@@ -14,14 +10,21 @@
 				</v-list-item-subtitle>
 			</v-list-item-content>
 			<v-list-item-action>
-				<div>
-					<v-icon @click="deleteItem()" color="red">
+				<div class="actions-wrapper">
+					<v-icon @click="deleteItem()" color="#ea7186">
 						mdi-delete
 					</v-icon>
-
-					<v-icon @click="console.log('done')" color="green">
-						mdi-check
-					</v-icon>
+					<v-btn
+						color="#c2edce"
+						v-show="!done"
+						dark
+						small
+						depressed
+						fab
+						class="check-btn"
+					>
+						<v-icon @click="toggleDone"> mdi-check </v-icon>
+					</v-btn>
 				</div>
 			</v-list-item-action>
 		</v-list-item>
@@ -36,8 +39,7 @@
 				></v-text-field>
 				<v-textarea
 					class="text-input"
-					clearable
-					label="Two rows"
+					label="Description"
 					rows="3"
 					row-height="20"
 					no-resize
@@ -47,19 +49,15 @@
 				></v-textarea>
 			</v-list-item-content>
 			<v-list-item-action>
-				<div>
-					<v-icon @click="updateTodo" color="green">
-						mdi-check
-					</v-icon>
-				</div>
+				<v-btn class="ma-1" color="green" plain @click="updateTodo">
+					Update
+				</v-btn>
 			</v-list-item-action>
 		</v-list-item>
 	</div>
 </template>
 
 <script>
-import todosEndpoint from '../endpoints/todosEndpoint';
-
 export default {
 	props: {
 		listItem: {},
@@ -69,20 +67,31 @@ export default {
 			editable: false,
 			title: this.listItem.title,
 			description: this.listItem.description,
+			done: this.listItem.done,
 		};
 	},
 	methods: {
 		deleteItem() {
-			todosEndpoint.deleteTodo(this.listItem.id);
+			this.$store.dispatch('deleteTodo', this.listItem.id);
 		},
 		toggleEditable() {
 			this.editable = !this.editable;
+		},
+		toggleDone() {
+			this.done = !this.done;
+			this.$store.dispatch('updateTodo', {
+				id: this.listItem.id,
+				title: this.title,
+				description: this.description,
+				done: this.done,
+			});
 		},
 		updateTodo() {
 			this.$store.dispatch('updateTodo', {
 				id: this.listItem.id,
 				title: this.title,
 				description: this.description,
+				done: this.done,
 			});
 			this.toggleEditable();
 		},
@@ -90,4 +99,11 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.check-btn {
+	margin-left: 16px;
+}
+.v-list-item__action {
+	margin: 0 !important;
+}
+</style>
