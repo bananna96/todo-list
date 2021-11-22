@@ -51,7 +51,6 @@
 </template>
 
 <script>
-import todosEndpoint from '../endpoints/todosEndpoint';
 export default {
 	data() {
 		return {
@@ -63,7 +62,7 @@ export default {
 	methods: {
 		addItem() {
 			this.dialog = false;
-			todosEndpoint.addTodo({
+			this.$store.dispatch('addTodo', {
 				title: this.title,
 				description: this.description,
 			});

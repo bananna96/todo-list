@@ -16,8 +16,6 @@
 </template>
 
 <script>
-// import todosEndpoint from '../endpoints/todosEndpoint';
-
 export default {
 	data: function () {
 		return {
