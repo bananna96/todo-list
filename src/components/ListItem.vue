@@ -5,8 +5,8 @@
 			:key="listItem.id"
 			class="item-container"
 		>
-			<v-col>
-				<v-list-item-content @click="toggleEditable">
+			<v-col @click="toggleEditable">
+				<v-list-item-content>
 					<v-list-item-title>
 						{{ listItem.title }}
 					</v-list-item-title>
@@ -21,7 +21,7 @@
 					:priorityStatus="listItem.priority"
 				/>
 			</v-col>
-			<v-col class="third-col">
+			<v-col class="col-3">
 				<v-list-item-action>
 					<div class="actions-wrapper">
 						<v-icon @click="deleteItem()" color="#ea7186">
@@ -45,9 +45,8 @@
 			</v-col>
 		</v-list-item>
 		<v-list-item v-show="this.editable">
-			<v-list-item-content class="edit-warpper">
+			<v-list-item-content class="edit-wrapper">
 				<v-text-field
-					class="text-input"
 					label="Title"
 					hide-details
 					v-model="title"
@@ -55,7 +54,6 @@
 				></v-text-field>
 
 				<v-textarea
-					class="text-input"
 					label="Description"
 					rows="3"
 					row-height="20"
@@ -84,7 +82,7 @@
 </template>
 
 <script>
-import Priority from './Priority.vue';
+import Priority from "./Priority.vue";
 
 export default {
 	components: {
@@ -101,16 +99,16 @@ export default {
 			done: this.listItem.done,
 			priority: this.listItem.priority,
 			prioritySelection: [
-				{ name: 'None', value: 0 },
-				{ name: 'Low', value: 1 },
-				{ name: 'Medium', value: 2 },
-				{ name: 'High', value: 3 },
+				{ name: "None", value: 0 },
+				{ name: "Low", value: 1 },
+				{ name: "Medium", value: 2 },
+				{ name: "High", value: 3 },
 			],
 		};
 	},
 	methods: {
 		deleteItem() {
-			this.$store.dispatch('deleteTodo', this.listItem.id);
+			this.$store.dispatch("deleteTodo", this.listItem.id);
 		},
 		toggleEditable() {
 			if (this.done) {
@@ -121,7 +119,7 @@ export default {
 		},
 		toggleDone() {
 			this.done = !this.done;
-			this.$store.dispatch('updateTodo', {
+			this.$store.dispatch("updateTodo", {
 				id: this.listItem.id,
 				title: this.title,
 				description: this.description,
@@ -130,7 +128,7 @@ export default {
 			});
 		},
 		updateTodo() {
-			this.$store.dispatch('updateTodo', {
+			this.$store.dispatch("updateTodo", {
 				id: this.listItem.id,
 				title: this.title,
 				description: this.description,
@@ -150,31 +148,22 @@ export default {
 .v-list-item__action {
 	margin: 0 !important;
 }
-
 .actions-wrapper {
 	display: flex;
 }
-.edit-warpper {
+.edit-wrapper {
 	padding: 0;
 }
-
-.circle-icon {
-	margin: 10px;
+.edit-wrapper > div {
+	margin: 10px 0px;
 }
 .item-container {
 	padding: 0;
 }
-.third-col {
+.col-3 {
 	padding-right: 12px;
 	display: flex;
 	justify-content: flex-end;
-}
-
-.edit-warpper > div {
-	margin: 10px 0px;
-}
-.text-input {
-	border-color: yellow !important;
 }
 .v-text-field--outlined >>> fieldset {
 	border-color: rgba(111, 179, 184, 1);

@@ -2,14 +2,14 @@
 	<v-sheet rounded width="500px">
 		<div class="listheader-wrapper">
 			<TheSearchbar class="searchbar" />
-			<TheAddItemDrawer class="drawer" />
+			<TheAddItemDrawer />
 		</div>
 	</v-sheet>
 </template>
 
 <script>
-import TheAddItemDrawer from '../components/TheAddItemDrawer.vue';
-import TheSearchbar from '../components/TheSearchbar.vue';
+import TheAddItemDrawer from "../components/TheAddItemDrawer.vue";
+import TheSearchbar from "../components/TheSearchbar.vue";
 
 export default {
 	components: {

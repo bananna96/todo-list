@@ -1,6 +1,6 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-import todoEndpoint from '../endpoints/todosEndpoint';
+import Vue from "vue";
+import Vuex from "vuex";
+import todoEndpoint from "../endpoints/todosEndpoint";
 
 Vue.use(Vuex);
 
@@ -45,17 +45,16 @@ export default new Vuex.Store({
 	},
 	actions: {
 		addTodo({ commit }, todo) {
-			commit('ADD_TODO', todo);
+			commit("ADD_TODO", todo);
 		},
 		setTodos({ commit }, todoArray) {
-			commit('SET_TODOS', todoArray);
+			commit("SET_TODOS", todoArray);
 		},
 		updateTodo({ commit }, todo) {
-			commit('UPDATE_TODO', todo);
+			commit("UPDATE_TODO", todo);
 		},
 		deleteTodo({ commit }, id) {
-			commit('DELETE_TODO', id);
+			commit("DELETE_TODO", id);
 		},
 	},
-	modules: {},
 });

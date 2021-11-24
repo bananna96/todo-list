@@ -1,14 +1,11 @@
 <template>
 	<div>
 		<div class="priority-wrapper">
-			<v-icon
-				:color="getPriorityStatus(priorityStatus).color"
-				class="circle-icon mdi-18px"
-			>
+			<v-icon :color="status.color" class="circle-icon mdi-18px">
 				mdi-circle
 			</v-icon>
 			<v-list-item-subtitle>
-				{{ getPriorityStatus(priorityStatus).status }}
+				{{ status.text }}
 			</v-list-item-subtitle>
 		</div>
 	</div>
@@ -19,30 +16,35 @@ export default {
 	props: {
 		priorityStatus: Number,
 	},
+	computed: {
+		status() {
+			return this.getPriorityStatus(this.priorityStatus);
+		},
+	},
 	methods: {
 		getPriorityStatus(statusNumber) {
-			let status;
+			let text;
 			let color;
 
 			switch (statusNumber) {
 				case 1:
-					status = 'Low';
-					color = '#C0FFE0';
+					text = "Low";
+					color = "#C0FFE0";
 					break;
 				case 2:
-					status = 'Medium';
-					color = '#FF8400';
+					text = "Medium";
+					color = "#FF8400";
 					break;
 				case 3:
-					status = 'High';
-					color = '#E00000';
+					text = "High";
+					color = "#E00000";
 					break;
 				default:
-					status = '';
-					color = '';
+					text = "";
+					color = "";
 			}
 			return {
-				status,
+				text,
 				color,
 			};
 		},
@@ -54,5 +56,8 @@ export default {
 .priority-wrapper {
 	display: flex;
 	align-items: center;
+}
+.circle-icon {
+	margin-right: 5px;
 }
 </style>

@@ -1,11 +1,11 @@
 <template>
 	<div>
 		<v-dialog v-model="dialog" width="500">
-			<template v-slot:activator="{ on, attrs }">
+			<template v-slot:activator="{ on, open }">
 				<v-btn
 					color="#6fb3b8"
 					dark
-					v-bind="attrs"
+					v-bind="open"
 					v-on="on"
 					small
 					depressed
@@ -37,11 +37,12 @@
 						hide-details
 						v-model="title"
 						outlined
+						@input="toggleDisabled(title)"
 					></v-text-field>
 					<v-textarea
 						class="text-input"
 						clearable
-						label="Two rows"
+						label="Description"
 						rows="3"
 						row-height="20"
 						no-resize
@@ -64,7 +65,12 @@
 					<v-btn color="#ea7186" text @click="toggleDialog()">
 						Close
 					</v-btn>
-					<v-btn color="primary" text @click="addItem()">
+					<v-btn
+						color="primary"
+						text
+						@click="addItem()"
+						:disabled="this.btnDisabled"
+					>
 						Add
 					</v-btn>
 				</v-card-actions>
@@ -78,22 +84,23 @@ export default {
 	data() {
 		return {
 			dialog: false,
-			title: '',
-			description: '',
+			title: "",
+			description: "",
 			priority: 0,
 			prioritySelection: [
-				{ name: 'None', value: 0 },
-				{ name: 'Low', value: 1 },
-				{ name: 'Medium', value: 2 },
-				{ name: 'High', value: 3 },
+				{ name: "None", value: 0 },
+				{ name: "Low", value: 1 },
+				{ name: "Medium", value: 2 },
+				{ name: "High", value: 3 },
 			],
 			alert: false,
+			btnDisabled: true,
 		};
 	},
 	methods: {
 		addItem() {
 			if (this.title.length > 0) {
-				this.$store.dispatch('addTodo', {
+				this.$store.dispatch("addTodo", {
 					title: this.title,
 					description: this.description,
 					priority: this.priority,
@@ -105,10 +112,17 @@ export default {
 		},
 		toggleDialog() {
 			this.dialog = !this.dialog;
-			this.title = '';
-			this.description = '';
+			this.title = "";
+			this.description = "";
 			this.priority = 0;
 			this.alert = false;
+		},
+		toggleDisabled(text) {
+			if (text.length == 0) {
+				this.btnDisabled = true;
+			} else {
+				this.btnDisabled = false;
+			}
 		},
 	},
 };

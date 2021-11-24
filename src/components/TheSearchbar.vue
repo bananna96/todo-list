@@ -1,5 +1,4 @@
 <template>
-	<!-- ADD CUSTOM SEARCHBAR -->
 	<div>
 		<v-text-field
 			append-icon="mdi-magnify"
@@ -20,13 +19,12 @@ export default {
 		return {
 			listItemsAll: this.$store.state.todos,
 			filteredTodos: [],
-			searchValue: '',
+			searchValue: "",
 		};
 	},
-	computed: {},
 	methods: {
 		setTodos() {
-			this.$store.dispatch('setTodos', this.filteredTodos);
+			this.$store.dispatch("setTodos", this.filteredTodos);
 		},
 		filterItems(value) {
 			if (value) {
@@ -44,13 +42,3 @@ export default {
 	},
 };
 </script>
-
-<style scoped>
-/* .v-text-field--outlined >>> fieldset {
-	border-color: rgba(111, 179, 184, 1);
-}
-.v-text-field--outlined >>> i,
-.v-text-field--outlined >>> label {
-	color: rgba(111, 179, 184, 1);
-} */
-</style>
