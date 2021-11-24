@@ -49,6 +49,16 @@
 						hide-details
 						outlined
 					></v-textarea>
+					<v-select
+						class="text-input"
+						:items="prioritySelection"
+						v-model="priority"
+						item-text="name"
+						label="Priority"
+						outlined
+						@change="changePriority(priority)"
+						hide-details
+					></v-select>
 				</div>
 				<v-card-actions>
 					<v-spacer></v-spacer>
@@ -72,6 +82,12 @@ export default {
 			title: '',
 			description: '',
 			priority: 0,
+			prioritySelection: [
+				{ name: 'None', value: 0 },
+				{ name: 'Low', value: 1 },
+				{ name: 'Medium', value: 2 },
+				{ name: 'High', value: 3 },
+			],
 			alert: false,
 		};
 	},

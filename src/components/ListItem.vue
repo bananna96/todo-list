@@ -53,15 +53,7 @@
 					v-model="title"
 					outlined
 				></v-text-field>
-				<v-select
-					:items="prioritySelection"
-					v-model="priority"
-					item-text="name"
-					label="Priority"
-					outlined
-					@change="changePriority(priority)"
-					hide-details
-				></v-select>
+
 				<v-textarea
 					class="text-input"
 					label="Description"
@@ -72,6 +64,15 @@
 					hide-details
 					outlined
 				></v-textarea>
+				<v-select
+					:items="prioritySelection"
+					v-model="priority"
+					item-text="name"
+					label="Priority"
+					outlined
+					@change="changePriority(priority)"
+					hide-details
+				></v-select>
 			</v-list-item-content>
 			<v-list-item-action>
 				<v-btn class="ma-1" color="green" plain @click="updateTodo">
