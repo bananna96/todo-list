@@ -56,7 +56,6 @@
 						item-text="name"
 						label="Priority"
 						outlined
-						@change="changePriority(priority)"
 						hide-details
 					></v-select>
 				</div>

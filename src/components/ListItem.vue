@@ -70,7 +70,6 @@
 					item-text="name"
 					label="Priority"
 					outlined
-					@change="changePriority(priority)"
 					hide-details
 				></v-select>
 			</v-list-item-content>
@@ -139,10 +138,6 @@ export default {
 				done: this.done,
 			});
 			this.toggleEditable();
-		},
-		changePriority(prio) {
-			this.priority = prio;
-			console.log(this.priority);
 		},
 	},
 };
