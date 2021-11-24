@@ -15,7 +15,7 @@
 					</v-list-item-subtitle>
 				</v-list-item-content>
 			</v-col>
-			<v-col>
+			<v-col @click="toggleEditable">
 				<Priority
 					v-show="listItem.priority > 0"
 					:priorityStatus="listItem.priority"
@@ -53,6 +53,15 @@
 					v-model="title"
 					outlined
 				></v-text-field>
+				<v-select
+					:items="prioritySelection"
+					v-model="priority"
+					item-text="name"
+					label="Priority"
+					outlined
+					@change="changePriority(priority)"
+					hide-details
+				></v-select>
 				<v-textarea
 					class="text-input"
 					label="Description"
@@ -90,6 +99,13 @@ export default {
 			title: this.listItem.title,
 			description: this.listItem.description,
 			done: this.listItem.done,
+			priority: this.listItem.priority,
+			prioritySelection: [
+				{ name: 'None', value: 0 },
+				{ name: 'Low', value: 1 },
+				{ name: 'Medium', value: 2 },
+				{ name: 'High', value: 3 },
+			],
 		};
 	},
 	methods: {
@@ -118,9 +134,14 @@ export default {
 				id: this.listItem.id,
 				title: this.title,
 				description: this.description,
+				priority: this.priority,
 				done: this.done,
 			});
 			this.toggleEditable();
+		},
+		changePriority(prio) {
+			this.priority = prio;
+			console.log(this.priority);
 		},
 	},
 };
