@@ -24,6 +24,7 @@ export default new Vuex.Store({
 				title: payload.title,
 				description: payload.description,
 				done: false,
+				priority: payload.priority,
 			};
 			state.todos.push(newTodo);
 		},
@@ -35,6 +36,7 @@ export default new Vuex.Store({
 			state.todos[index].title = payload.title;
 			state.todos[index].description = payload.description;
 			state.todos[index].done = payload.done;
+			state.todos[index].priority = payload.priority;
 		},
 		DELETE_TODO(state, id) {
 			let index = state.todos.findIndex(i => i.id == id);

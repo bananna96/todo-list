@@ -48,10 +48,10 @@ export default {
 	components: {
 		ListItem,
 	},
-	data: function () {
-		return {
-			todos: this.$store.state.todos,
-		};
+	computed: {
+		todos() {
+			return this.$store.state.todos;
+		},
 	},
 	methods: {
 		getDoneItems(items) {

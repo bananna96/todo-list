@@ -71,6 +71,7 @@ export default {
 			dialog: false,
 			title: '',
 			description: '',
+			priority: 0,
 			alert: false,
 		};
 	},
@@ -80,6 +81,7 @@ export default {
 				this.$store.dispatch('addTodo', {
 					title: this.title,
 					description: this.description,
+					priority: this.priority,
 				});
 				this.toggleDialog();
 			} else {
@@ -90,6 +92,7 @@ export default {
 			this.dialog = !this.dialog;
 			this.title = '';
 			this.description = '';
+			this.priority = 0;
 			this.alert = false;
 		},
 	},
