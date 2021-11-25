@@ -9,7 +9,7 @@
 			clearable
 			outlined
 			hide-details
-			:disabled="listItemsAll.length == 0"
+			:disabled="listItemsAll.length < 2"
 		></v-text-field>
 	</div>
 </template>

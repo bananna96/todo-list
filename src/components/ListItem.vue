@@ -91,9 +91,7 @@
 					<v-btn color="green" plain @click="updateTodo">
 						Update
 					</v-btn>
-					<v-btn color="red" plain @click="toggleEditable">
-						Close
-					</v-btn>
+					<v-btn color="red" plain @click="close"> Close </v-btn>
 				</div>
 			</v-list-item-action>
 		</v-list-item>
@@ -127,6 +125,12 @@ export default {
 		};
 	},
 	methods: {
+		close() {
+			this.title = this.listItem.title;
+			this.description = this.listItem.description;
+			this.priority = this.listItem.priority;
+			this.toggleEditable();
+		},
 		deleteItem() {
 			this.$store.dispatch("deleteTodo", this.listItem.id);
 		},
