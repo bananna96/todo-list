@@ -60,7 +60,7 @@ export default {
 	},
 	computed: {
 		todos() {
-			return this.$store.state.todos;
+			return this.sortByPriority(this.$store.state.todos);
 		},
 		openItems() {
 			return this.getOpenItems(this.$store.state.todos);
@@ -75,6 +75,11 @@ export default {
 		},
 		getOpenItems(items) {
 			return items.filter(item => !item.done);
+		},
+		sortByPriority(array) {
+			return array.sort((a, b) => {
+				return b.priority - a.priority;
+			});
 		},
 	},
 };

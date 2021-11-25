@@ -5,7 +5,10 @@
 			:key="listItem.id"
 			class="item-container"
 		>
-			<v-col @click="toggleEditable">
+			<v-col
+				:cols="listItem.priority > 0 ? 6 : 8"
+				@click="toggleEditable"
+			>
 				<v-list-item-content>
 					<v-list-item-title>
 						{{ listItem.title }}
@@ -24,6 +27,18 @@
 			<v-col class="col-3">
 				<v-list-item-action>
 					<div class="actions-wrapper">
+						<v-btn
+							color="#FFFFFF"
+							v-show="done"
+							small
+							depressed
+							fab
+							class="arrow-btn"
+						>
+							<v-icon @click="toggleDone" color="#6fb3b8">
+								mdi-arrow-up
+							</v-icon>
+						</v-btn>
 						<v-icon @click="deleteItem()" color="#ea7186">
 							mdi-delete
 						</v-icon>
@@ -72,9 +87,14 @@
 				></v-select>
 			</v-list-item-content>
 			<v-list-item-action>
-				<v-btn class="ma-1" color="green" plain @click="updateTodo">
-					Update
-				</v-btn>
+				<div class="btn-container">
+					<v-btn color="green" plain @click="updateTodo">
+						Update
+					</v-btn>
+					<v-btn color="red" plain @click="toggleEditable">
+						Close
+					</v-btn>
+				</div>
 			</v-list-item-action>
 		</v-list-item>
 		<v-divider></v-divider>
@@ -142,6 +162,17 @@ export default {
 </script>
 
 <style scoped>
+.btn-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.btn-container > button {
+	margin: 5px 0px;
+}
+.arrow-btn {
+	margin-right: 16px;
+}
 .check-btn {
 	margin-left: 16px;
 }

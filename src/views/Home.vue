@@ -12,10 +12,10 @@
 </template>
 
 <script>
-import TheHeader from '../components/TheHeader.vue';
-import TheListHeader from '../components/TheListHeader.vue';
-import TheList from '../components/TheList.vue';
-import todosEndpoint from '../endpoints/todosEndpoint';
+import TheHeader from "../components/TheHeader.vue";
+import TheListHeader from "../components/TheListHeader.vue";
+import TheList from "../components/TheList.vue";
+import todosEndpoint from "../endpoints/todosEndpoint";
 
 export default {
 	components: {

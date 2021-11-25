@@ -99,7 +99,7 @@ export default {
 	},
 	methods: {
 		addItem() {
-			if (this.title.length > 0) {
+			if (this.title.trim().length > 0) {
 				this.$store.dispatch("addTodo", {
 					title: this.title,
 					description: this.description,
@@ -107,6 +107,8 @@ export default {
 				});
 				this.toggleDialog();
 			} else {
+				this.btnDisabled = true;
+				this.title = "";
 				this.alert = !this.alert;
 			}
 		},
@@ -155,5 +157,6 @@ export default {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	padding-top: 10px;
 }
 </style>
